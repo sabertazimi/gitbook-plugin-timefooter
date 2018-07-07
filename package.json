@@ -1,0 +1,30 @@
+{
+  "name": "gitbook-plugin-timefooter",
+  "version": "1.0.0",
+  "description": "Page Footer Plugin for Gitbook",
+  "engine": {
+    "gitbook": ">2.x.x"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabertazimi/gitbook-plugin-timefooter.git"
+  },
+  "keywords": [
+    "gitbook",
+    "gitbook-plugin",
+    "footer"
+  ],
+  "author": "sabertazimi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sabertazimi/gitbook-plugin-timefooter/issues"
+  },
+  "homepage": "https://github.com/sabertazimi/gitbook-plugin-timefooter",
+  "dependencies": {
+    "moment": "^2.22.2"
+  }
+}
