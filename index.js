@@ -24,6 +24,8 @@ module.exports = {
         _copy = _c ? _c + ' all right reserved，' + _copy : _copy;
       }
 
+      console.log('timefooter');
+
       var historyFile = this.book.config.get('root', '') + page.path;
       var repo;
       console.log(historyFile);
