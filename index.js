@@ -24,9 +24,9 @@ module.exports = {
         _copy = _c ? _c + ' all right reserved，' + _copy : _copy;
       }
 
-      var historyFile = this.book.config.get('root', '') + page.path;
-      var repo;
-      console.log(historyFile);
+      // var historyFile = this.book.config.get('root', '') + page.path;
+      // var repo;
+      // console.log(historyFile);
       return page;
 
       // return nodegit.Repository.open(path.resolve('./.git'))
