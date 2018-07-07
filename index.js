@@ -24,6 +24,7 @@ module.exports = {
       var __page = page;
       var rootPath = this.book.config.get('root', './');
       console.log(rootPath);
+      console.log(this.resolve(rootPath));
       console.log(this.book.resolve(__page.path));
 
       var _copy = '<span class="copyright">' + _copy + '</span>';
