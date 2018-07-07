@@ -22,8 +22,7 @@ module.exports = {
       }
 
       var __page = page;
-      __page.content = '';
-      console.log(__page);
+      console.log(book.resolve(__page.path));
 
       var _copy = '<span class="copyright">' + _copy + '</span>';
       var str = ' \n\n<footer class="page-footer">' + _copy +
