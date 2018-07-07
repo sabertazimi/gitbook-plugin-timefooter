@@ -1,6 +1,6 @@
 var path = require('path');
 
-var nodegit = require('nodegit');
+var Git = require('nodegit');
 var moment = require('moment');
 
 module.exports = {
@@ -28,7 +28,7 @@ module.exports = {
       var repo;
       console.log(historyFile);
 
-      return nodegit.Repository.open(path.resolve('./.git'))
+      return Git.Repository.open(path.resolve('./.git'))
         .then(function (r) {
           repo = r;
           return repo.getMasterCommit();
@@ -36,7 +36,7 @@ module.exports = {
         .then(function (firstCommitOnMaster) {
           var walker = repo.createRevWalk();
           walker.push(firstCommitOnMaster.sha());
-          walker.sorting(nodegit.Revwalk.SORT.Time);
+          walker.sorting(Git.Revwalk.SORT.Time);
 
           return walker.fileHistoryWalk(historyFile, 2);
         })
