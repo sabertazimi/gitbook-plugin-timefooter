@@ -1,5 +1,7 @@
-var moment = require('moment');
 var path = require('path');
+
+var nodegit = require('nodegit');
+var moment = require('moment');
 
 module.exports = {
   book: {
@@ -22,27 +24,39 @@ module.exports = {
         _copy = _c ? _c + ' all right reserved，' + _copy : _copy;
       }
 
-      var __page = page;
-      var rootPath = this.book.config.get('root', './');
-      console.log(rootPath);
-      console.log(path.resolve(rootPath));
-      console.log(this.book.resolve(rootPath));
-      console.log(this.book.resolve(__page.path));
+      var historyFile = this.book.config.get('root', '') + page.path;
+      var repo;
+      console.log(historyFile);
 
-      var _copy = '<span class="copyright">' + _copy + '</span>';
-      var str = ' \n\n<footer class="page-footer">' + _copy +
-        '<span class="footer-modification">' +
-        _label +
-        '\n{{file.mtime | date("' + _format +
-        '")}}\n</span></footer>';
+      return nodegit.Repository.open(path.resolve('./.git'))
+        .then(function (r) {
+          repo = r;
+          return repo.getMasterCommit();
+        })
+        .then(function (firstCommitOnMaster) {
+          var walker = repo.createRevWalk();
+          walker.push(firstCommitOnMaster.sha());
+          walker.sorting(nodegit.Revwalk.SORT.Time);
 
-      page.content = page.content + str;
-      return page;
-    }
-  },
-  filters: {
-    date: function (d, format) {
-      return moment(d).format(format);
+          return walker.fileHistoryWalk(historyFile, 2);
+        })
+        .then((resultingArrayOfCommits) => {
+          moment.locale();
+          var dateStr = moment().format(_format);
+
+          if (resultingArrayOfCommits.length > 0) {
+            var commit = resultingArrayOfCommits[0].commit;
+            var date = commit.date();
+            dateStr = moment(date).format(_format);
+          }
+
+          _copy = '<span class="copyright">' + _copy + '</span>';
+          var str = ' \n\n<footer class="page-footer">' + _copy +
+            '<span class="footer-modification">' +
+            _label + '\n' + dateStr + '\n</span></footer>';
+          page.content = page.content + str;
+          return page;
+        });
     }
   }
 };
