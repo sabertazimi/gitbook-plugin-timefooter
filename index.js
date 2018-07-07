@@ -21,7 +21,9 @@ module.exports = {
         _copy = _c ? _c + ' all right reserved，' + _copy : _copy;
       }
 
-      console.log(page);
+      var __page = page;
+      __page.content = '';
+      console.log(__page);
 
       var _copy = '<span class="copyright">' + _copy + '</span>';
       var str = ' \n\n<footer class="page-footer">' + _copy +
