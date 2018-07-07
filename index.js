@@ -59,6 +59,11 @@ module.exports = {
           page.content = page.content + str;
           return page;
         });
+    },
+    filters: {
+      dateFormat: function (d, format) {
+        return moment(d).format(format);
+      }
     }
   }
 };
