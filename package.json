@@ -1,6 +1,6 @@
 {
   "name": "gitbook-plugin-timefooter",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Page Footer Plugin for Gitbook",
   "engines": {
     "gitbook": ">2.x.x"
