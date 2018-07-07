@@ -12,8 +12,6 @@ module.exports = {
   },
   hooks: {
     'page:before': function (page) {
-      console.log('timefooter');
-
       var _label = 'File Modify: ';
       var _format = 'YYYY-MM-DD HH:mm';
       var _copy = 'powered by Gitbook';
@@ -29,41 +27,37 @@ module.exports = {
       var historyFile = this.book.config.get('root', '') + page.path;
       var repo;
       console.log(historyFile);
+      return page;
 
-      return nodegit.Repository.open(path.resolve('./.git'))
-        .then(function (r) {
-          repo = r;
-          return repo.getMasterCommit();
-        })
-        .then(function (firstCommitOnMaster) {
-          var walker = repo.createRevWalk();
-          walker.push(firstCommitOnMaster.sha());
-          walker.sorting(nodegit.Revwalk.SORT.Time);
+      // return nodegit.Repository.open(path.resolve('./.git'))
+      //   .then(function (r) {
+      //     repo = r;
+      //     return repo.getMasterCommit();
+      //   })
+      //   .then(function (firstCommitOnMaster) {
+      //     var walker = repo.createRevWalk();
+      //     walker.push(firstCommitOnMaster.sha());
+      //     walker.sorting(nodegit.Revwalk.SORT.Time);
 
-          return walker.fileHistoryWalk(historyFile, 2);
-        })
-        .then((resultingArrayOfCommits) => {
-          moment.locale();
-          var dateStr = moment().format(_format);
+      //     return walker.fileHistoryWalk(historyFile, 2);
+      //   })
+      //   .then((resultingArrayOfCommits) => {
+      //     moment.locale();
+      //     var dateStr = moment().format(_format);
 
-          if (resultingArrayOfCommits.length > 0) {
-            var commit = resultingArrayOfCommits[0].commit;
-            var date = commit.date();
-            dateStr = moment(date).format(_format);
-          }
+      //     if (resultingArrayOfCommits.length > 0) {
+      //       var commit = resultingArrayOfCommits[0].commit;
+      //       var date = commit.date();
+      //       dateStr = moment(date).format(_format);
+      //     }
 
-          _copy = '<span class="copyright">' + _copy + '</span>';
-          var str = ' \n\n<footer class="page-footer">' + _copy +
-            '<span class="footer-modification">' + _label +
-            '\n' + dateStr + '\n</span></footer>';
-          page.content = page.content + str;
-          return page;
-        });
-    },
-    filters: {
-      dateFormat: function (d, format) {
-        return moment(d).format(format);
-      }
+      //     _copy = '<span class="copyright">' + _copy + '</span>';
+      //     var str = ' \n\n<footer class="page-footer">' + _copy +
+      //       '<span class="footer-modification">' + _label +
+      //       '\n' + dateStr + '\n</span></footer>';
+      //     page.content = page.content + str;
+      //     return page;
+      //   });
     }
   }
 };
