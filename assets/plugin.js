@@ -1,6 +1,6 @@
 var path = require('path');
 
-// var Git = require('nodegit');
+var Git = require('nodegit');
 var moment = require('moment');
 
 module.exports = function (book, page) {
@@ -19,7 +19,6 @@ module.exports = function (book, page) {
 
         var historyFile = book.config.get('root', '') + page.path;
         var repo;
-        console.log(historyFile);
         return page;
 
         // return Git.Repository.open(path.resolve('./.git'))
