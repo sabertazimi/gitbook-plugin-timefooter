@@ -2,7 +2,7 @@
   "name": "gitbook-plugin-timefooter",
   "version": "1.0.0",
   "description": "Page Footer Plugin for Gitbook",
-  "engine": {
+  "engines": {
     "gitbook": ">2.x.x"
   },
   "main": "index.js",
