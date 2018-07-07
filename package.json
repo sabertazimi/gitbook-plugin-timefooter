@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/sabertazimi/gitbook-plugin-timefooter",
   "dependencies": {
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "nodegit": "^0.22.1"
   }
 }
