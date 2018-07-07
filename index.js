@@ -12,6 +12,8 @@ module.exports = {
   },
   hooks: {
     'page:before': function (page) {
+      console.log('timefooter');
+
       var _label = 'File Modify: ';
       var _format = 'YYYY-MM-DD HH:mm';
       var _copy = 'powered by Gitbook';
@@ -23,8 +25,6 @@ module.exports = {
         var _c = this.options.pluginsConfig['timefooter']['copyright'];
         _copy = _c ? _c + ' all right reserved，' + _copy : _copy;
       }
-
-      console.log('timefooter');
 
       var historyFile = this.book.config.get('root', '') + page.path;
       var repo;
@@ -54,8 +54,8 @@ module.exports = {
 
           _copy = '<span class="copyright">' + _copy + '</span>';
           var str = ' \n\n<footer class="page-footer">' + _copy +
-            '<span class="footer-modification">' +
-            _label + '\n' + dateStr + '\n</span></footer>';
+            '<span class="footer-modification">' + _label +
+            '\n' + dateStr + '\n</span></footer>';
           page.content = page.content + str;
           return page;
         });
