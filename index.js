@@ -12,17 +12,17 @@ module.exports = {
   },
   hooks: {
     'page:before': function (page) {
-      var _label = 'File Modify: ';
-      var _format = 'YYYY-MM-DD HH:mm';
-      var _copy = 'powered by Gitbook';
+      // var _label = 'File Modify: ';
+      // var _format = 'YYYY-MM-DD HH:mm';
+      // var _copy = 'powered by Gitbook';
 
-      if (this.options.pluginsConfig['timefooter']) {
-        _label = this.options.pluginsConfig['timefooter']['modify_label'] || _label;
-        _format = this.options.pluginsConfig['timefooter']['modify_format'] || _format;
+      // if (this.options.pluginsConfig['timefooter']) {
+      //   _label = this.options.pluginsConfig['timefooter']['modify_label'] || _label;
+      //   _format = this.options.pluginsConfig['timefooter']['modify_format'] || _format;
 
-        var _c = this.options.pluginsConfig['timefooter']['copyright'];
-        _copy = _c ? _c + ' all right reserved，' + _copy : _copy;
-      }
+      //   var _c = this.options.pluginsConfig['timefooter']['copyright'];
+      //   _copy = _c ? _c + ' all right reserved，' + _copy : _copy;
+      // }
 
       // var historyFile = this.book.config.get('root', '') + page.path;
       // var repo;
