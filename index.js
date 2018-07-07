@@ -1,6 +1,6 @@
 // var path = require('path');
 
-// var nodegit = require('nodegit');
+var nodegit = require('nodegit');
 // var moment = require('moment');
 
 module.exports = {
